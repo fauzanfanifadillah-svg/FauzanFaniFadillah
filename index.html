@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pancasila Modern - Home</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        /* --- UTAMA & WARNA (PUTIH + EMAS GAMING) --- */
+        :root {
+            --bg-main: #ffffff;
+            --bg-sub: #f8f9fa;
+            --gold-garuda: #D4AF37;
+            --gold-glow: #ffea9f;
+            --text-dark: #0f172a;
+            --text-muted: #475569;
+            --border-color: rgba(212, 175, 55, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-dark);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        /* Background Grid Pattern Futuristik Halus */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(212, 175, 55, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(212, 175, 55, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* --- NAVIGATION --- */
+        header {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid var(--gold-garuda);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.08);
+        }
+
+        .navbar {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: var(--text-dark);
+            gap: 16px;
+        }
+
+        .logo span {
+            color: var(--gold-garuda);
+        }
+
+        .logo img {
+            width: 40px;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+            object-fit: cover;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 15px;
+        }
+
+        .nav-links li a {
+            color: var(--text-dark);
+            text-decoration: none;
+            padding: 8px 16px;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            border-radius: 4px;
+            border: 1px solid transparent;
+        }
+
+        /* Menu aktif saat ini */
+        .nav-links li a.active, .nav-links li a:hover {
+            color: var(--gold-garuda);
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid var(--gold-garuda);
+        }
+
+        /* --- HERO CONTENT SECTION --- */
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 40px 20px;
+            width: 100%;
+        }
+
+        .hero-panel {
+            background: var(--bg-sub);
+            border: 1px solid var(--border-color);
+            padding: 60px 40px;
+            border-radius: 16px;
+            position: relative;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+            overflow: hidden;
+        }
+
+        /* Ornamen Siku Khas Game/Sci-fi */
+        .hero-panel::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            width: 30px;
+            height: 30px;
+            border-top: 4px solid var(--gold-garuda);
+            border-left: 4px solid var(--gold-garuda);
+        }
+
+        .hero-panel::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            right: -1px;
+            width: 30px;
+            height: 30px;
+            border-bottom: 4px solid var(--gold-garuda);
+            border-right: 4px solid var(--gold-garuda);
+        }
+
+        .main-title {
+            font-size: 46px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+
+        .main-title span {
+            color: var(--gold-garuda);
+            position: relative;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* Kotak Tujuan Website (Outline 1.2) */
+        .objective-card {
+            background: #ffffff;
+            border-left: 4px solid var(--gold-garuda);
+            padding: 30px;
+            text-align: left;
+            max-width: 800px;
+            margin: 0 auto 40px auto;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.01);
+        }
+
+        .objective-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 14px;
+            color: var(--gold-garuda);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .objective-card p {
+            color: var(--text-dark);
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        /* Sila Tag (Outline 1.3) */
+        .hud-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid var(--gold-garuda);
+            color: var(--text-dark);
+            padding: 10px 24px;
+            font-weight: 700;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 4px;
+        }
+
+        .hud-tag span {
+            color: var(--gold-garuda);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: var(--bg-sub);
+            border-top: 1px solid var(--border-color);
+            padding: 20px;
+            text-align: center;
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: auto;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Responsif untuk HP */
+        @media (max-width: 768px) {
+            .navbar { flex-direction: column; gap: 15px; }
+            .nav-links { flex-wrap: wrap; justify-content: center; gap: 5px; }
+            .main-title { font-size: 32px; }
+            .hero-panel { padding: 40px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <div class="logo">PANCASILA<span>MODERN</span>
+                <img src="pancasila.png" alt="Pancasila Modern Image">
+            </div>
+            <ul class="nav-links">
+                <li><a href="home.html" class="active">Home</a></li>
+                <li><a href="fenomena.html">Fenomena</a></li>
+                <li><a href="nilai-moral.html">Nilai & Etika</a></li>
+                <li><a href="interaktif.html">Interaktif</a></li>
+                <li><a href="kesimpulan.html">Kesimpulan</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="hero-panel">
+            <h1 class="main-title">Pancasila Sebagai Nilai Moral dan Etika di <span>Era Modern</span></h1>
+            <div class="subtitle"> Sistem Operasi Karakter Generasi Digital</div>
+
+            <div class="objective-card">
+                <h3>[ TUJUAN PLATFORM ]</h3>
+                <p>Membangun kesadaran kritis mahasiswa dan generasi muda dalam menginternalisasikan nilai moral Pancasila. Website ini berfungsi sebagai instrumen edukasi interaktif untuk menyaring perilaku negatif di dunia maya dan menegakkan etika siber demi menjaga harmoni sosial masyarakat.</p>
+            </div>
+
+            <div class="hud-tag">
+                STATUS KONEKSI: <span>SILA KE-2 (KEMANUSIAAN YANG ADIL DAN BERADAB)</span>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        UAS Pendidikan Pancasila • Teknik Komputer • @2026
+    </footer>
+
+</body>
+</html>

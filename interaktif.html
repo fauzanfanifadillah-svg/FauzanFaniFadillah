@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pancasila Modern - Interaktif</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        /* --- UTAMA & WARNA (MATCHING DENGAN HOME) --- */
+        :root {
+            --bg-main: #ffffff;
+            --bg-sub: #f8f9fa;
+            --gold-garuda: #D4AF37;
+            --gold-glow: #ffea9f;
+            --text-dark: #0f172a;
+            --text-muted: #475569;
+            --border-color: rgba(212, 175, 55, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-dark);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(212, 175, 55, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(212, 175, 55, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* --- NAVIGATION --- */
+        header {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid var(--gold-garuda);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.08);
+        }
+
+        .navbar {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: var(--text-dark);
+            gap: 16px;
+        }
+
+        .logo span {
+            color: var(--gold-garuda);
+        }
+
+        .logo img {
+            width: 40px;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+            object-fit: cover;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 15px;
+        }
+
+        .nav-links li a {
+            color: var(--text-dark);
+            text-decoration: none;
+            padding: 8px 16px;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            border-radius: 4px;
+            border: 1px solid transparent;
+        }
+
+        .nav-links li a.active, .nav-links li a:hover {
+            color: var(--gold-garuda);
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid var(--gold-garuda);
+        }
+
+        /* --- CONTAINER UTAMA QUIZ --- */
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 40px 20px;
+            width: 100%;
+        }
+
+        .quiz-panel {
+            background: var(--bg-sub);
+            border: 1px solid var(--border-color);
+            padding: 50px 40px;
+            border-radius: 16px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+            overflow: hidden;
+        }
+
+        .quiz-panel::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            width: 30px;
+            height: 30px;
+            border-top: 4px solid var(--gold-garuda);
+            border-left: 4px solid var(--gold-garuda);
+        }
+
+        .quiz-panel::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            right: -1px;
+            width: 30px;
+            height: 30px;
+            border-bottom: 4px solid var(--gold-garuda);
+            border-right: 4px solid var(--gold-garuda);
+        }
+
+        .panel-title {
+            font-size: 32px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .panel-title span {
+            color: var(--gold-garuda);
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 35px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        /* --- AREA PERTANYAAN & JAWABAN (HUD STYLE) --- */
+        .question-card {
+            background: #ffffff;
+            border-left: 4px solid var(--gold-garuda);
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.01);
+        }
+
+        .question-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 13px;
+            color: var(--gold-garuda);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+        }
+
+        .question-text {
+            color: var(--text-dark);
+            font-size: 18px;
+            font-weight: 600;
+            line-height: 1.6;
+        }
+
+        .options-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option-item {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            padding: 15px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-muted);
+            transition: all 0.2s ease;
+        }
+
+        .option-item:hover {
+            border-color: var(--gold-garuda);
+            color: var(--text-dark);
+            background: rgba(212, 175, 55, 0.05);
+        }
+
+        .option-item.selected {
+            border-color: var(--gold-garuda);
+            background: rgba(212, 175, 55, 0.12);
+            color: var(--text-dark);
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+        }
+
+        /* --- CONTROL BUTTON --- */
+        .button-group {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 30px;
+        }
+
+        .hud-btn {
+            background: transparent;
+            border: 1px solid var(--gold-garuda);
+            color: var(--text-dark);
+            padding: 12px 30px;
+            font-weight: 700;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .hud-btn:hover {
+            background: var(--gold-garuda);
+            color: #ffffff;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+        }
+
+        /* --- SCREEN SKOR AKHIR --- */
+        .result-box {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .score-display {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 64px;
+            font-weight: 700;
+            color: var(--gold-garuda);
+            margin: 20px 0;
+            text-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+        }
+
+        .feedback-text {
+            font-size: 16px;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 35px auto;
+            line-height: 1.7;
+        }
+
+        .hide {
+            display: none;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: var(--bg-sub);
+            border-top: 1px solid var(--border-color);
+            padding: 20px;
+            text-align: center;
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: auto;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 768px) {
+            .navbar { flex-direction: column; gap: 15px; }
+            .nav-links { flex-wrap: wrap; justify-content: center; gap: 5px; }
+            .panel-title { font-size: 24px; }
+            .quiz-panel { padding: 30px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <div class="logo">PANCASILA<span>MODERN</span>
+                <img src="pancasila.png" alt="Pancasila Modern Image">
+            </div>
+            <ul class="nav-links">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="fenomena.html">Fenomena</a></li>
+                <li><a href="nilai-moral.html">Nilai & Etika</a></li>
+                <li><a href="interaktif.html" class="active">Interaktif</a></li>
+                <li><a href="kesimpulan.html">Kesimpulan</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="quiz-panel">
+            
+            <div id="quiz-screen">
+                <h1 class="panel-title">Uji Adab <span>Digital Kemanusiaan</span></h1>
+                <div class="subtitle">INSTRUMEN EVALUASI EMPATI DAN SIKAP BERADAB GENERASI DIGITAL (SILA KE-2)</div>
+                
+                <div class="question-card">
+                    <h3 id="question-hud-index">[Question_1]</h3>
+                    <div class="question-text" id="question-text">Memuat kode baris pertanyaan...</div>
+                </div>
+
+                <ul class="options-list" id="options-container">
+                </ul>
+
+                <div class="button-group">
+                    <button class="hud-btn" id="next-btn" onclick="nextQuestion()">Lanjutkan</button>
+                </div>
+            </div>
+
+            <div id="result-screen" class="hide">
+                <h1 class="panel-title">DIAGNOSIS <span>MORAL SELESAI</span></h1>
+                <div class="subtitle">EVALUASI TINGKAT ADAB DAN EMPATI SIBER KAMU</div>
+                
+                <div class="result-box">
+                    <div class="score-display" id="score-text">0/100</div>
+                    <p class="feedback-text" id="feedback-text">Memuat umpan balik adab kemanusiaan...</p>
+                    <button class="hud-btn" onclick="restartQuiz()">Ulangi Tes</button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        UAS Pendidikan Pancasila • Teknik Komputer • @2026
+    </footer>
+
+    <script>
+        /* Bank Soal Terfokus Penuh pada Esensi Sila ke-2 (Adab, Empati, Bullying) */
+        const quizData = [
+            {
+                question: "Ketika melihat seseorang menjadi korban cyberbullying atau dikucilkan secara digital di grup angkatan kampus, tindakan yang mencerminkan Sila ke-2 adalah...",
+                options: [
+                    "Berdiam diri saja agar posisi aman dan tidak ikut terseret konflik antar-teman.",
+                    "Mendukung aksi pelaku perundungan agar dianggap loyal dan kompak oleh kelompok.",
+                    "Menghubungi korban secara personal untuk memberikan empati serta dukungan moral psikologis.",
+                    "Ikut meramaikan kolom komentar dengan emoji tertawa agar suasana makin riuh."
+                ],
+                answer: 2
+            },
+            {
+                question: "Mengapa etika berkomunikasi dan menjaga lisan di internet tetap wajib dilakukan oleh Gen Z meskipun tindakan pengetikan komentar toxic belum tentu dijerat hukum formal?",
+                options: [
+                    "Sebab setiap aktivitas digital kita membawa konsekuensi moral serta dampak psikologis nyata terhadap harkat sesama manusia.",
+                    "Hanya bertujuan agar akun media sosial pribadi kita tidak dilaporkan massal atau diblokir.",
+                    "Agar kita mendapatkan reputasi sebagai pengguna internet yang paling pintar di lingkungan kampus.",
+                    "Sebenarnya tidak wajib dijaga, asalkan kita menggunakan identitas palsu atau fake account."
+                ],
+                answer: 0
+            },
+            {
+                question: "Menyebarkan foto aib, rahasia pribadi, atau melakukan 'doxxing' kepada seseorang di media sosial dengan alasan kesal atau bercanda, melanggar Sila ke-2 karena...",
+                options: [
+                    "Tindakan tersebut merendahkan harkat dan martabat manusia serta merusak hak rasa aman korban.",
+                    "Hal itu hanya membuang-buang kuota internet secara sia-sia.",
+                    "Dapat menurunkan performa algoritma akun media sosial kita pribadi.",
+                    "Tindakan tersebut hanya salah jika korban melaporkannya langsung ke pihak kampus."
+                ],
+                answer: 0
+            },
+            {
+                question: "Implementasi nyata dari sikap 'Beradab' saat merespons perbedaan pendapat di kolom komentar platform digital adalah...",
+                options: [
+                    "Menggunakan kata makian yang sarkas demi menjatuhkan mentalitas lawan diskusi.",
+                    "Menuliskan argumen sanggahan secara objektif, santun, tanpa menyerang ranah personal atau fisik manusia.",
+                    "Membuat thread khusus untuk menggalang massa guna melakukan pembungkaman digital secara massal.",
+                    "Mengabaikan adab komunikasi karena menganggap ruang digital bersifat bebas dan maya."
+                ],
+                answer: 1
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let selectedOptionIndex = null;
+
+        const quizScreen = document.getElementById('quiz-screen');
+        const resultScreen = document.getElementById('result-screen');
+        const questionHudIndex = document.getElementById('question-hud-index');
+        const questionText = document.getElementById('question-text');
+        const optionsContainer = document.getElementById('options-container');
+        const nextButton = document.getElementById('next-btn');
+        const scoreText = document.getElementById('score-text');
+        const feedbackText = document.getElementById('feedback-text');
+
+        function startQuiz() {
+            currentQuestionIndex = 0;
+            score = 0;
+            quizScreen.classList.remove('hide');
+            resultScreen.classList.add('hide');
+            showQuestion();
+        }
+
+        function showQuestion() {
+            selectedOptionIndex = null;
+            const currentQuestion = quizData[currentQuestionIndex];
+            
+            questionHudIndex.innerText = `[Question_${currentQuestionIndex + 1}]`;
+            questionText.innerText = currentQuestion.question;
+            optionsContainer.innerHTML = '';
+
+            currentQuestion.options.forEach((option, index) => {
+                const li = document.createElement('li');
+                li.classList.add('option-item');
+                li.innerText = option;
+                li.onclick = () => selectOption(li, index);
+                optionsContainer.appendChild(li);
+            });
+
+            if (currentQuestionIndex === quizData.length - 1) {
+                nextButton.innerText = "Lihat Hasil Diagnosis";
+            } else {
+                nextButton.innerText = "Lanjutkan";
+            }
+        }
+
+        function selectOption(element, index) {
+            const items = optionsContainer.getElementsByClassName('option-item');
+            for (let item of items) {
+                item.classList.remove('selected');
+            }
+            element.classList.add('selected');
+            selectedOptionIndex = index;
+        }
+
+        function nextQuestion() {
+            if (selectedOptionIndex === null) {
+                alert("Sistem Memerlukan Input: Silakan pilih salah satu jawaban terlebih dahulu!");
+                return;
+            }
+
+            if (selectedOptionIndex === quizData[currentQuestionIndex].answer) {
+                score++;
+            }
+
+            currentQuestionIndex++;
+
+            if (currentQuestionIndex < quizData.length) {
+                showQuestion();
+            } else {
+                showResult();
+            }
+        }
+
+        function showResult() {
+            quizScreen.classList.add('hide');
+            resultScreen.classList.remove('hide');
+            
+            const finalScore = Math.round((score / quizData.length) * 100);
+            scoreText.innerText = `${finalScore}/100`;
+
+            if (finalScore === 100) {
+                feedbackText.innerText = "EMPATI OPTIMAL: Luar biasa! Kamu menginternalisasi nilai kemanusiaan Sila ke-2 dengan sangat matang. Kamu sadar penuh bahwa di balik layar monitor, ada hati manusia yang wajib dihormati dan dilindungi hak rasa amannya. ✨";
+            } else if (finalScore >= 50) {
+                feedbackText.innerText = "ADAB STANDAR: Pemahamanmu sudah cukup. Namun ingat, jangan biarkan ruang maya mengikis rasa kemanusiaanmu. Sila ke-2 menuntut kita untuk tetap memperlakukan orang lain dengan adil dan beradab meskipun lewat ketikan teks.";
+            } else {
+                feedbackText.innerText = "ANOMALI KARAKTER: Diperlukan evaluasi diri. Ingat, kegagalan menjaga lisan digital dan hilangnya empati siber adalah bentuk pengikisan nyata nilai 'Kemanusiaan yang Adil dan Beradab'. Mari perbaiki kompas moral kemanusiaan digital kita.";
+            }
+        }
+
+        function restartQuiz() {
+            startQuiz();
+        }
+
+        startQuiz();
+    </script>
+</body>
+</html>
