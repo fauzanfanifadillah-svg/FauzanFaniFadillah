@@ -73,26 +73,15 @@
         }
 
         .logo {
-            display: inline-flex;
-            align-items: center;
             font-family: 'Space Grotesk', sans-serif;
             font-size: 22px;
             font-weight: 700;
             letter-spacing: 1px;
             color: var(--text-dark);
-            gap: 16px;
         }
 
         .logo span {
             color: var(--gold-garuda);
-        }
-
-        .logo img {
-            width: 40px;
-            height: auto;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
-            object-fit: cover;
         }
 
         .nav-links {
@@ -254,10 +243,6 @@
             margin-bottom: 12px;
         }
 
-        .highlight-box ul li:last-child {
-            margin-bottom: 0;
-        }
-
         .highlight-box ul li::before {
             content: '>';
             position: absolute;
@@ -269,6 +254,128 @@
 
         .highlight-box.action ul li::before {
             color: var(--cyber-green);
+        }
+
+        /* --- HUB FORUM / KOLOM KOMENTAR INTERAKTIF --- */
+        .comment-form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        .comment-input, .name-input {
+            width: 100%;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            padding: 12px 16px;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 14px;
+            color: var(--text-dark);
+            outline: none;
+            transition: border 0.2s;
+        }
+
+        .comment-input:focus, .name-input:focus {
+            border-color: var(--gold-garuda);
+        }
+
+        .comment-input {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .comment-submit-btn {
+            align-self: flex-end;
+            background: transparent;
+            border: 1px solid var(--gold-garuda);
+            color: var(--text-dark);
+            padding: 10px 24px;
+            font-weight: 700;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .comment-submit-btn:hover {
+            background: var(--gold-garuda);
+            color: white;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+        }
+
+        .comments-display-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .comment-node {
+            background: #ffffff;
+            border-left: 3px solid var(--gold-garuda);
+            padding: 18px;
+            border-radius: 0 8px 8px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        }
+
+        .comment-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+
+        .comment-author {
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .comment-time {
+            color: var(--text-muted);
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .comment-body {
+            font-size: 14px;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        .reply-trigger {
+            font-size: 12px;
+            color: var(--gold-garuda);
+            cursor: pointer;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Desain Struktur Balasan (Replies Nested) */
+        .replies-container {
+            margin-top: 15px;
+            padding-left: 20px;
+            border-left: 2px dashed #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .reply-node {
+            background: var(--bg-sub);
+            padding: 12px 15px;
+            border-radius: 6px;
+            border-left: 3px solid var(--cyber-green);
+        }
+
+        .reply-box-dynamic {
+            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
         }
 
         /* --- QUOTE BANNER TERMINAL --- */
@@ -319,9 +426,7 @@
 
     <header>
         <nav class="navbar">
-            <div class="logo">PANCASILA<span>MODERN</span>
-                <img src="pancasila.png" alt="Pancasila Modern Image">
-            </div>
+            <div class="logo">PANCASILA<span>//MODERN</span></div>
             <ul class="nav-links">
                 <li><a href="home.html">Home</a></li>
                 <li><a href="fenomena.html">Fenomena</a></li>
@@ -336,7 +441,7 @@
         
         <div class="summary-header">
             <h1>Simpulan <span>& Komitmen</span></h1>
-            <div class="subtitle">ADAB SIBER BERDASARKAN SILA KE-2 PANCASILA</div>
+            <div class="subtitle"> ADAB SIBER BERDASARKAN SILA KE-2 PANCASILA</div>
         </div>
 
         <div class="cyber-panel">
@@ -360,25 +465,42 @@
         </div>
 
         <div class="cyber-panel">
-            <span class="panel-tag">[ PENERAPAN ]</span>
-            <h2>Menerapkan Gerakan 'Adab Siber' Gen Z</h2>
+            <span class="panel-tag">[ TERAPKAN ]</span>
+            <h2>Gerakan 'Adab Siber' Gen Z</h2>
             <p>
-                Sebagai mahasiswa Teknik Komputer dan calon inovator teknologi masa depan, mari kita pimpin perubahan perilaku digital di lingkungan kampus dan pergaulan siber harian kita dengan berkomitmen pada aksi nyata berikut:
+                Sebagai mahasiswa Teknik Komputer dan calon inovator teknologi masa depan, mari kita pimpin perubahan perilaku digital di lingkungan kampus dengan berkomitmen pada aksi nyata berikut:
             </p>
 
             <div class="highlight-box action">
                 <h3>[ ACTION PROTOCOLS / AJAKAN NYATA ]</h3>
                 <ul>
-                    <li>Tegakkan prinsip <b>'Zero Cyberbullying'</b>: Berhenti menertawakan, menyukai, atau membagikan candaan digital yang menjatuhkan mentalitas rekan sekampus.</li>
-                    <li>Salurkan <b>Empati Digital Aktif</b>: Berani menghubungi secara personal dan merangkul rekan mahasiswa yang terlihat mengalami pengucilan atau perundungan di grup chat.</li>
-                    <li>Gunakan <b>Filter Lisan Sebelum Ketik</b>: Hindari penggunaan kata sarkas atau makian kasar saat berdiskusi kelompok di platform digital, utamakan argumen yang logis dan santun.</li>
-                    <li>Hormati Hak Privasi: Berhenti menyebarkan foto aib, data sensitif, atau rahasia pribadi orang lain (doxxing) hanya demi hiburan semata.</li>
+                    <li>Tegakkan prinsip <b>'Zero Cyberbullying'</b>: Berhenti menertawakan atau membagikan candaan digital yang menjatuhkan rekan sekampus.</li>
+                    <li>Salurkan <b>Empati Digital Aktif</b>: Berani merangkul rekan mahasiswa yang terlihat mengalami pengucilan di grup chat kelas.</li>
+                    <li>Gunakan <b>Filter Lisan Sebelum Ketik</b>: Hindari kata kasar saat berdiskusi, utamakan argumen yang logis dan santun.</li>
+                    <li>Hormati Hak Privasi: Berhenti menyebarkan foto aib orang lain (doxxing) hanya demi hiburan semata.</li>
                 </ul>
             </div>
         </div>
 
+        <div class="cyber-panel">
+            <span class="panel-tag">[ FORUM DISKUSI ]</span>
+            <h2>Forum Diskusi Komunitas</h2>
+            <p style="font-size: 14px; margin-bottom: 25px;">
+                Bagikan pandanganmu atau tanyakan sesuatu seputar penegakan etika kemanusiaan digital di lingkungan kampus kita. Berdiskusilah secara sehat dan beradab.
+            </p>
+
+            <div class="comment-form">
+                <input type="text" id="main-name" class="name-input" placeholder="Masukkan nama kamu..." required>
+                <textarea id="main-comment" class="comment-input" placeholder="Tulis komentar atau opini kamu di sini..." required></textarea>
+                <button class="comment-submit-btn" onclick="addMainComment()">Kirim Komentar //</button>
+            </div>
+
+            <div class="comments-display-list" id="comments-root">
+                </div>
+        </div>
+
         <div class="terminal-quote">
-            <p>MASSAGE: "Mari jadikan Sila ke-2 sebagai <span>Sistem Operasi Karakter Digital</span>, tegakkan adab demi menjaga keutuhan harkat kemanusiaan sesama."</p>
+            <p>From unknown: "Mari jadikan Sila ke-2 sebagai <span>Sistem Operasi Karakter Digital</span>, tegakkan adab demi menjaga keutuhan harkat kemanusiaan sesama."</p>
         </div>
 
     </main>
@@ -387,5 +509,123 @@
         UAS Pendidikan Pancasila • Teknik Komputer • @2026
     </footer>
 
+    <script>
+        // Logika Pengelolaan Komentar Menggunakan LocalStorage agar Data Tersimpan di Browser
+        let communityComments = JSON.parse(localStorage.getItem('pancasila_comments')) || [
+            // Dummy Data Awal Biar Forum Tidak Kosong Saat Pertama Kali Dibuka Dosen
+            {
+                id: 1,
+                name: "Rian (Tekkom 24)",
+                text: "Menurut gw, fenomena cyberbullying di grup angkatan emang makin samar sih. Kadang dibalut sarkasme atau 'candaan' tapi korbannya kena mental.",
+                time: "15 Juni 2026",
+                replies: [
+                    { name: "Amel", text: "Setuju bgt kak, makanya bener kata artikel ini, filternya emang harus dari kesadaran moral kita masing-masing.", time: "15 Juni 2026" }
+                ]
+            }
+        ];
+
+        function saveAndRender() {
+            localStorage.setItem('pancasila_comments', JSON.stringify(communityComments));
+            renderComments();
+        }
+
+        function renderComments() {
+            const root = document.getElementById('comments-root');
+            root.innerHTML = '';
+
+            communityComments.forEach((comment) => {
+                const node = document.createElement('div');
+                node.classList.add('comment-node');
+
+                // Konten Balasan (Replies) HTML Generator
+                let repliesHTML = '';
+                comment.replies.forEach(reply => {
+                    repliesHTML += `
+                        <div class="reply-node">
+                            <div class="comment-meta">
+                                <span class="comment-author">${reply.name} <small style="color:var(--cyber-green);">[REPLY]</small></span>
+                                <span class="comment-time">${reply.time}</span>
+                            </div>
+                            <div class="comment-body">${reply.text}</div>
+                        </div>
+                    `;
+                });
+
+                node.innerHTML = `
+                    <div class="comment-meta">
+                        <span class="comment-author">${comment.name}</span>
+                        <span class="comment-time">${comment.time}</span>
+                    </div>
+                    <div class="comment-body">${comment.text}</div>
+                    <span class="reply-trigger" onclick="toggleReplyBox(${comment.id})">[ Balas Komentar ]</span>
+                    
+                    <div id="reply-box-${comment.id}" class="reply-box-dynamic hide">
+                        <input type="text" id="reply-name-${comment.id}" class="name-input" placeholder="Nama pembalas..." style="padding:8px 12px; font-size:13px;">
+                        <textarea id="reply-text-${comment.id}" class="comment-input" placeholder="Tulis balasan..." style="padding:8px 12px; font-size:13px; min-height:60px;"></textarea>
+                        <button class="comment-submit-btn" style="padding:6px 16px; font-size:11px;" onclick="submitReply(${comment.id})">Kirim Balasan</button>
+                    </div>
+
+                    <div class="replies-container">
+                        ${repliesHTML}
+                    </div>
+                `;
+                root.appendChild(node);
+            });
+        }
+
+        // Fungsi Tambah Komentar Utama
+        function addMainComment() {
+            const nameInput = document.getElementById('main-name');
+            const commentInput = document.getElementById('main-comment');
+
+            if (!nameInput.value.trim() || !commentInput.value.trim()) {
+                alert("Mohon isi nama dan kolom komentar terlebih dahulu!");
+                return;
+            }
+
+            const newComment = {
+                id: Date.now(),
+                name: nameInput.value,
+                text: commentInput.value,
+                time: new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }),
+                replies: []
+            };
+
+            communityComments.unshift(newComment); // Tambah ke baris paling atas
+            nameInput.value = '';
+            commentInput.value = '';
+            saveAndRender();
+        }
+
+        // Fungsi Tampilkan Input Box untuk Membalas
+        function toggleReplyBox(commentId) {
+            const box = document.getElementById(`reply-box-${commentId}`);
+            box.classList.toggle('hide');
+        }
+
+        // Fungsi Submit Balasan Komentar
+        function submitReply(commentId) {
+            const nameInput = document.getElementById(`reply-name-${commentId}`);
+            const textInput = document.getElementById(`reply-text-${commentId}`);
+
+            if (!nameInput.value.trim() || !textInput.value.trim()) {
+                alert("Mohon isi nama dan pesan balasan kamu!");
+                return;
+            }
+
+            const commentIndex = communityComments.findIndex(c => c.id === commentId);
+            if (commentIndex !== -1) {
+                communityComments[commentIndex].replies.push({
+                    name: nameInput.value,
+                    text: textInput.value,
+                    time: new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })
+                });
+                saveAndRender();
+            }
+        }
+
+        // Render perdana saat halaman diakses
+        renderComments();
+    </script>
 </body>
 </html>
