@@ -73,6 +73,9 @@
         }
 
         .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 16px;
             font-family: 'Space Grotesk', sans-serif;
             font-size: 22px;
             font-weight: 700;
@@ -82,6 +85,14 @@
 
         .logo span {
             color: var(--gold-garuda);
+        }
+
+        .logo img {
+            width: 40px;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+            object-fit: cover;
         }
 
         .nav-links {
@@ -426,7 +437,9 @@
 
     <header>
         <nav class="navbar">
-            <div class="logo">PANCASILA<span>//MODERN</span></div>
+            <div class="logo">PANCASILA<span> MODERN</span>
+                <img src="pancasila.png" alt="Pancasila Modern Image">
+            </div>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="fenomena.html">Fenomena</a></li>
